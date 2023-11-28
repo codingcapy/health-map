@@ -139,12 +139,12 @@ export default class HealthMap {
   }
 
   registerForShots() {
-    this._burnabyBlocks.forEach((block)=>{
-      if (block === 'H'){
-        if (this._burnabyHouseholds[this._burnabyBlocks.indexOf(block)].getInhabitants().filter((inhabitant:Person)=>inhabitant.getIsVaccinated() === false).length === 0) block = 'F'
+    this._burnabyBlocks.forEach((block) => {
+      if (block === 'H') {
+        if (this._burnabyHouseholds[this._burnabyBlocks.indexOf(block)].getInhabitants().filter((inhabitant: Person) => inhabitant.getIsVaccinated() === false).length === 0) block = 'F'
         const idx = this.findClosestCIndex(this._burnabyBlocks, this._burnabyBlocks.indexOf(block))
-        const eligiblePersons = this._burnabyHouseholds[this._burnabyBlocks.indexOf(block)].getInhabitants().filter((inhabitant:Person)=> inhabitant.getIsVaccinated() === false && inhabitant.getAge() >= this._currentIntake)
-        eligiblePersons.forEach((person:Person)=>{
+        const eligiblePersons = this._burnabyHouseholds[this._burnabyBlocks.indexOf(block)].getInhabitants().filter((inhabitant: Person) => inhabitant.getIsVaccinated() === false && inhabitant.getAge() >= this._currentIntake)
+        eligiblePersons.forEach((person: Person) => {
           this._burnabyClinics[idx].getQueue().enqueue(person)
           person.setIsVaccinated(true)
         })
@@ -152,14 +152,32 @@ export default class HealthMap {
     })
   }
 
-  findClosestCIndex(list:any, hIndex:number) {
-    let closestCIndex = -1;
-    for (let i = hIndex - 1; i >= 0; i--) {
-        if (list[i] === 'C') {
-            closestCIndex = i;
-            break;
-        }
+  findClosestCIndex(list: any, hIndex: number) {
+    let idx = 0;
+    let idxLeft = 0;
+    let distLeft = 0;
+    let idxRight = 0;
+    let distRight = 0;
+    for (let i = hIndex; i >= 0; i--) {
+      distLeft++
+      if (list[i] === 'C') {
+        idxLeft = i;
+        break;
+      }
     }
-    return closestCIndex;
-}
+    for (let j = hIndex; j < list.length; j++) {
+      distRight++
+      if (list[j] === 'C') {
+        idxRight = j;
+        break;
+      }
+    }
+    if (distLeft < distRight){
+      idx = idxLeft
+    }
+    else{
+      idx = idxRight
+    }
+    return idx;
+  }
 }
