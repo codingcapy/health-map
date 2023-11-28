@@ -137,18 +137,29 @@ export default class HealthMap {
     console.log(this._vancouverBlocks)
     console.log(this._richmondBlocks)
   }
-  
+
   registerForShots() {
-    for (let j = 0; j < this._burnabyHouseholds.length; j++) {
-      for (let i = 0; i < this._burnabyHouseholds[j].getInhabitants().length; i++) {
-        if (this._burnabyHouseholds[j].getInhabitants()[i].getIsVaccinated()) continue
-        if (this._burnabyHouseholds[j].getInhabitants()[i].getAge() < this._currentIntake) continue
-        this._burnabyBlocks.forEach((block) => {
-          if (block === "C") {
-            this._burnabyClinics[0].getQueue().enqueue(this._burnabyHouseholds[j].getInhabitants()[i])
-          }
+    this._burnabyBlocks.forEach((block)=>{
+      if (block === 'H'){
+        if (this._burnabyHouseholds[this._burnabyBlocks.indexOf(block)].getInhabitants().filter((inhabitant:Person)=>inhabitant.getIsVaccinated() === false).length === 0) block = 'F'
+        const idx = this.findClosestCIndex(this._burnabyBlocks, this._burnabyBlocks.indexOf(block))
+        const eligiblePersons = this._burnabyHouseholds[this._burnabyBlocks.indexOf(block)].getInhabitants().filter((inhabitant:Person)=> inhabitant.getIsVaccinated() === false && inhabitant.getAge() >= this._currentIntake)
+        eligiblePersons.forEach((person:Person)=>{
+          this._burnabyClinics[idx].getQueue().enqueue(person)
+          person.setIsVaccinated(true)
         })
       }
-    }
+    })
   }
+
+  findClosestCIndex(list:any, hIndex:number) {
+    let closestCIndex = -1;
+    for (let i = hIndex - 1; i >= 0; i--) {
+        if (list[i] === 'C') {
+            closestCIndex = i;
+            break;
+        }
+    }
+    return closestCIndex;
+}
 }

@@ -12,10 +12,15 @@ export default class Person {
         this._isVaccinated = isVaccinated
         this._age = age
     }
-    getIsVaccinated(){
+    getIsVaccinated() {
         return this._isVaccinated;
     }
-    getAge(){
+
+    setIsVaccinated(state:boolean) {
+        this._isVaccinated = state
+    }
+
+    getAge() {
         return this._age;
     }
 }
