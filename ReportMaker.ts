@@ -6,7 +6,7 @@ Description: ReportMaker class for HealthMap
 */
 
 interface IReport {
-    printDetails(): any
+    printDetails(): void;
 }
 
 export default class ReportMaker {
