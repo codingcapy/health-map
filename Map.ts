@@ -78,7 +78,7 @@ export default class HealthMap {
 
     for (let i = 0; i < this._maxLength; ++i) {
       if (this._burnabyHouseholds[i]) {
-        if (this._burnabyHouseholds[i].getInhabitants().find((inhabitant: Person) => inhabitant.getIsVaccinated() === false && inhabitant.getAge() >= this._currentIntake)) {
+        if (this._burnabyHouseholds[i].getInhabitants().find((inhabitant: Person) => inhabitant.getIsVaccinated() === false)) {
           burnabyBlocks[this._burnabyHouseholds[i].getBlockNum()] = "H"
         }
         else {
@@ -95,7 +95,7 @@ export default class HealthMap {
 
     for (let i = 0; i < this._maxLength; ++i) {
       if (this._vancouverHouseholds[i]) {
-        if (this._vancouverHouseholds[i].getInhabitants().find((inhabitant: Person) => inhabitant.getIsVaccinated() === false && inhabitant.getAge() >= this._currentIntake)) {
+        if (this._vancouverHouseholds[i].getInhabitants().find((inhabitant: Person) => inhabitant.getIsVaccinated() === false)) {
           vancouverBlocks[this._vancouverHouseholds[i].getBlockNum()] = "H"
         }
         else {
@@ -112,7 +112,7 @@ export default class HealthMap {
 
     for (let i = 0; i < this._maxLength; ++i) {
       if (this._richmondHouseholds[i]) {
-        if (this._richmondHouseholds[i].getInhabitants().find((inhabitant: Person) => inhabitant.getIsVaccinated() === false && inhabitant.getAge() >= this._currentIntake)) {
+        if (this._richmondHouseholds[i].getInhabitants().find((inhabitant: Person) => inhabitant.getIsVaccinated() === false)) {
           richmondBlocks[this._richmondHouseholds[i].getBlockNum()] = "H"
         }
         else {

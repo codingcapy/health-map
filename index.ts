@@ -6,7 +6,7 @@ import ReportMaker from "./ReportMaker"
 import ComplexReport from "./ComplexReport"
 import SimpleReport from "./SimpleReport"
 
-let currentIntake = 18
+let currentIntake = 20
 
 async function main() {
     const map = new HealthMap(data, currentIntake)
