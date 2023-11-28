@@ -194,12 +194,29 @@ export default class HealthMap {
         break;
       }
     }
-    if (distLeft < distRight){
+    if (distLeft < distRight) {
       idx = idxLeft
     }
-    else{
+    else {
       idx = idxRight
     }
     return idx;
+  }
+
+  getClinics() {
+    const clinics:any = []
+    this._burnabyClinics.forEach((c) => {
+      const clinic = { name: c.getName(), lineup:c.getPeopleInLineup(), waitTime:c.getCurrentWaitTime()}
+      clinics.push(clinic)
+    })
+    this._vancouverClinics.forEach((c) => {
+      const clinic = { name: c.getName(), lineup:c.getPeopleInLineup(), waitTime:c.getCurrentWaitTime()}
+      clinics.push(clinic)
+    })
+    this._richmondClinics.forEach((c) => {
+      const clinic = { name: c.getName(), lineup:c.getPeopleInLineup(), waitTime:c.getCurrentWaitTime()}
+      clinics.push(clinic)
+    })
+    return clinics
   }
 }

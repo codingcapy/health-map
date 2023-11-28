@@ -30,4 +30,10 @@ export default class Clinic {
     getQueue() {
         return this._queue;
     }
+    getPeopleInLineup(){
+        return this._queue.getPeopleInQueue()
+    }
+    getCurrentWaitTime(){
+        return this._queue.getCurrentWaitTime()
+    }
 }

@@ -23,4 +23,12 @@ export default class Person {
     getAge() {
         return this._age;
     }
+
+    getFullName(){
+        return this._fullName
+    }
+
+    getPhn(){
+        return this._phn
+    }
 }

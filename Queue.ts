@@ -3,8 +3,10 @@ import Person from "./Person";
 
 export default class Queue {
     private items: any
+    private currentWaitTime:number
     constructor() {
         this.items = [];
+        this.currentWaitTime = 0
     }
     enqueue(element: any) {
         this.items.push(element);
@@ -29,5 +31,19 @@ export default class Queue {
     }
     print() {
         console.log(this.items.join(' '));
+    }
+    getPeopleInQueue(){
+        const people:string[] = []
+        this.items.forEach((item:Person)=>{
+            const person = `${item.getFullName()} ${item.getPhn()}`
+            people.push(person)
+        })
+        return people;
+    }
+    getCurrentWaitTime(){
+        for (let i = 0 ; i < this.items.length ; i++){
+            this.currentWaitTime += 15;
+        }
+        return this.currentWaitTime;
     }
 }
