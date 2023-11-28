@@ -11,7 +11,7 @@ interface IReport {
 
 export default class ReportMaker {
     private report: IReport
-    constructor(report: any) {
+    constructor(report: IReport) {
         this.report = report;
     }
     printDetails() {
