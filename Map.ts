@@ -1,4 +1,9 @@
-
+/*
+Author: Paul Kim
+Date: November 28, 2023
+Version: 1.0
+Description: HealthMap class for HealthMap
+*/
 
 import Household from "./Household";
 import Clinic from "./Clinic";
@@ -38,7 +43,7 @@ export default class HealthMap {
       burnabyHouseholds.push(household)
     })
     this._mapData.city.Burnaby.clinics.forEach((c: any) => {
-      const clinic = new Clinic(c.name, c.blockNum, c.staff, new Queue())
+      const clinic = new Clinic("Burnaby", c.name, c.blockNum, c.staff, new Queue())
       burnabyClinics.push(clinic)
     })
 
@@ -47,7 +52,7 @@ export default class HealthMap {
       vancouverHouseholds.push(household)
     })
     this._mapData.city.Vancouver.clinics.forEach((c: any) => {
-      const clinic = new Clinic(c.name, c.blockNum, c.staff, new Queue())
+      const clinic = new Clinic("Vancouver", c.name, c.blockNum, c.staff, new Queue())
       vancouverClinics.push(clinic)
     })
 
@@ -56,7 +61,7 @@ export default class HealthMap {
       richmondHouseholds.push(household)
     })
     this._mapData.city.Richmond.clinics.forEach((c: any) => {
-      const clinic = new Clinic(c.name, c.blockNum, c.staff, new Queue())
+      const clinic = new Clinic("Richmond", c.name, c.blockNum, c.staff, new Queue())
       richmondClinics.push(clinic)
     })
 
@@ -204,17 +209,17 @@ export default class HealthMap {
   }
 
   getClinics() {
-    const clinics:any = []
+    const clinics: any = []
     this._burnabyClinics.forEach((c) => {
-      const clinic = { name: c.getName(), lineup:c.getPeopleInLineup(), waitTime:c.getCurrentWaitTime()}
+      const clinic = { region: c.getRegion(), name: c.getName(), lineup: c.getPeopleInLineup(), waitTime: c.getCurrentWaitTime() }
       clinics.push(clinic)
     })
     this._vancouverClinics.forEach((c) => {
-      const clinic = { name: c.getName(), lineup:c.getPeopleInLineup(), waitTime:c.getCurrentWaitTime()}
+      const clinic = { region: c.getRegion(), name: c.getName(), lineup: c.getPeopleInLineup(), waitTime: c.getCurrentWaitTime() }
       clinics.push(clinic)
     })
     this._richmondClinics.forEach((c) => {
-      const clinic = { name: c.getName(), lineup:c.getPeopleInLineup(), waitTime:c.getCurrentWaitTime()}
+      const clinic = { region: c.getRegion(), name: c.getName(), lineup: c.getPeopleInLineup(), waitTime: c.getCurrentWaitTime() }
       clinics.push(clinic)
     })
     return clinics

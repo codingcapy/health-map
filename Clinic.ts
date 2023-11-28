@@ -1,18 +1,29 @@
+/*
+Author: Paul Kim
+Date: November 28, 2023
+Version: 1.0
+Description: Clinic class for HealthMap
+*/
 
 import Queue from "./Queue";
-import Person from "./Person";
 
 export default class Clinic {
+    private _region: string;
     private _name: string;
     private _staff: number;
     private _blockNum: number;
     private _queue: Queue;
 
-    constructor(name: string, staff: number, blockNum: number, waitlist: Queue) {
+    constructor(region: string, name: string, staff: number, blockNum: number, waitlist: Queue) {
+        this._region = region;
         this._name = name;
         this._staff = staff;
         this._blockNum = blockNum;
         this._queue = waitlist;
+    }
+
+    getRegion() {
+        return this._region;
     }
 
     getName() {
@@ -30,10 +41,10 @@ export default class Clinic {
     getQueue() {
         return this._queue;
     }
-    getPeopleInLineup(){
+    getPeopleInLineup() {
         return this._queue.getPeopleInQueue()
     }
-    getCurrentWaitTime(){
+    getCurrentWaitTime() {
         return this._queue.getCurrentWaitTime()
     }
 }

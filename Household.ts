@@ -1,3 +1,9 @@
+/*
+Author: Paul Kim
+Date: November 28, 2023
+Version: 1.0
+Description: Household class for HealthMap
+*/
 
 import Person from "./Person";
 
@@ -17,6 +23,10 @@ export default class Household {
             persons.push(inhabitant)
         })
         this._persons = persons;
+    }
+
+    getCity() {
+        return this._city
     }
     getInhabitants() {
         return this._persons

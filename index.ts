@@ -1,3 +1,9 @@
+/*
+Author: Paul Kim
+Date: November 28, 2023
+Version: 1.0
+Description: main for HealthMap
+*/
 
 import * as data from "./data.json"
 

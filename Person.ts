@@ -1,4 +1,9 @@
-
+/*
+Author: Paul Kim
+Date: November 28, 2023
+Version: 1.0
+Description: Person class for HealthMap
+*/
 
 export default class Person {
     private _phn: string;
@@ -16,7 +21,7 @@ export default class Person {
         return this._isVaccinated;
     }
 
-    setIsVaccinated(state:boolean) {
+    setIsVaccinated(state: boolean) {
         this._isVaccinated = state
     }
 
@@ -24,11 +29,11 @@ export default class Person {
         return this._age;
     }
 
-    getFullName(){
+    getFullName() {
         return this._fullName
     }
 
-    getPhn(){
+    getPhn() {
         return this._phn
     }
 }
