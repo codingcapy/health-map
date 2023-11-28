@@ -78,7 +78,7 @@ export default class HealthMap {
 
     for (let i = 0; i < this._maxLength; ++i) {
       if (this._burnabyHouseholds[i]) {
-        if (this._burnabyHouseholds[i].getInhabitants().find((inhabitant: any) => inhabitant.isVaccinated == false && inhabitant.age >= this._currentIntake)) {
+        if (this._burnabyHouseholds[i].getInhabitants().find((inhabitant: Person) => inhabitant.getIsVaccinated() === false && inhabitant.getAge() >= this._currentIntake)) {
           burnabyBlocks[this._burnabyHouseholds[i].getBlockNum()] = "H"
         }
         else {
@@ -95,7 +95,7 @@ export default class HealthMap {
 
     for (let i = 0; i < this._maxLength; ++i) {
       if (this._vancouverHouseholds[i]) {
-        if (this._vancouverHouseholds[i].getInhabitants().find((inhabitant: any) => inhabitant.isVaccinated == false && inhabitant.age >= this._currentIntake)) {
+        if (this._vancouverHouseholds[i].getInhabitants().find((inhabitant: Person) => inhabitant.getIsVaccinated() === false && inhabitant.getAge() >= this._currentIntake)) {
           vancouverBlocks[this._vancouverHouseholds[i].getBlockNum()] = "H"
         }
         else {
@@ -112,7 +112,7 @@ export default class HealthMap {
 
     for (let i = 0; i < this._maxLength; ++i) {
       if (this._richmondHouseholds[i]) {
-        if (this._richmondHouseholds[i].getInhabitants().find((inhabitant: any) => inhabitant.isVaccinated == false && inhabitant.age >= this._currentIntake)) {
+        if (this._richmondHouseholds[i].getInhabitants().find((inhabitant: Person) => inhabitant.getIsVaccinated() === false && inhabitant.getAge() >= this._currentIntake)) {
           richmondBlocks[this._richmondHouseholds[i].getBlockNum()] = "H"
         }
         else {
@@ -131,11 +131,13 @@ export default class HealthMap {
     this._vancouverBlocks = vancouverBlocks
     this._richmondBlocks = richmondBlocks
   }
+
   printMap() {
     console.log(this._burnabyBlocks)
     console.log(this._vancouverBlocks)
     console.log(this._richmondBlocks)
   }
+  
   registerForShots() {
     for (let j = 0; j < this._burnabyHouseholds.length; j++) {
       for (let i = 0; i < this._burnabyHouseholds[j].getInhabitants().length; i++) {
